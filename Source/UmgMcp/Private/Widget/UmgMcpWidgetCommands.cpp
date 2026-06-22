@@ -6,6 +6,7 @@
 #include "FileManage/UmgAttentionSubsystem.h"
 #include "Editor.h"
 #include "Serialization/JsonSerializer.h"
+#include "Serialization/JsonWriter.h"
 #include "Dom/JsonObject.h"
 #include "WidgetBlueprint.h"
 #include "Misc/PackageName.h"
@@ -264,7 +265,26 @@ TSharedPtr<FJsonObject> FUmgMcpWidgetCommands::HandleCommand(const FString& Comm
             return Response;
         }
 
-        // 2. new_parent_widget (JSON object or string) is required
+        // 2. Backward compatibility: old reparent_widget moved a widget under an existing parent.
+        // New upstream semantics use new_parent_widget as a JSON container spec to wrap/replace.
+        FString LegacyNewParentName;
+        if (Params->TryGetStringField(TEXT("new_parent_name"), LegacyNewParentName) && !LegacyNewParentName.IsEmpty())
+        {
+            if (SetSubsystem->MoveWidget(TargetBlueprint, LegacyNewParentName, WidgetName))
+            {
+                Response->SetBoolField(TEXT("success"), true);
+                Response->SetStringField(TEXT("widget"), WidgetName);
+                Response->SetStringField(TEXT("new_parent"), LegacyNewParentName);
+            }
+            else
+            {
+                Response->SetBoolField(TEXT("success"), false);
+                Response->SetStringField(TEXT("error"), TEXT("Failed to move widget. Check logs for details."));
+            }
+            return Response;
+        }
+
+        // 3. new_parent_widget (JSON object or string) is required for wrapper/replacement mode
         const TSharedPtr<FJsonObject>* NewParentWidgetPtr = nullptr;
         if (Params->TryGetObjectField(TEXT("new_parent_widget"), NewParentWidgetPtr))
         {

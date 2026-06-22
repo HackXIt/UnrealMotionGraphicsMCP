@@ -225,7 +225,9 @@ This project has been developed with significant assistance from **Gemini, an AI
 | **Actions & Modifications** | `create_widget`                  |   ✅    | Create a new widget.                                                                             |
 |                             | `delete_widget`                  |   ✅    | Delete a widget.                                                                                 |
 |                             | `set_widget_properties`          |   ✅    | Set properties of a widget (omit widget_name to target active widget; union write fashion).      |
-|                             | `reparent_widget`                |   ✅    | Move a widget to a new parent.                                                                   |
+|                             | `reparent_widget`                |   ✅    | Legacy alias for moving a widget to a new parent.                                                |
+|                             | `move_widget`                    |   ✅    | Move a widget under an existing parent container.                                                |
+|                             | `wrap_widget`                    |   ✅    | Wrap/replace a widget with a new parent widget specification.                                    |
 |                             | `save_asset`                     |   ✅    | Save the active UMG asset.                                                                       |
 | **File Transformation**     | `export_umg_to_json`             |   ✅    | Export UMG asset to JSON format.                                                                 |
 |                             | `apply_json_to_umg`              |   ✅    | Apply JSON layout definition to UMG asset.                                                       |

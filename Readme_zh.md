@@ -223,7 +223,9 @@ flowchart LR
 | **动作与修改**     | `create_widget`                  |   ✅   | 创建新的控件。                                                                                  |
 |                    | `delete_widget`                  |   ✅   | 删除指定的控件。                                                                                |
 |                    | `set_widget_properties`          |   ✅   | 设置控件属性（widget_name 缺省时默认修改当前 target；采用并集覆盖写入）。                        |
-|                    | `reparent_widget`                |   ✅   | 重新指定控件的父级。                                                                            |
+|                    | `reparent_widget`                |   ✅   | 移动控件到新的父级的旧版别名。                                                                  |
+|                    | `move_widget`                    |   ✅   | 将控件移动到现有父容器下。                                                                      |
+|                    | `wrap_widget`                    |   ✅   | 使用新的父级控件规格包裹/替换控件。                                                             |
 |                    | `save_asset`                     |   ✅   | 保存当前活跃的 UMG 资产。                                                                       |
 | **文件转换**       | `export_umg_to_json`             |   ✅   | 将 UMG 资产反编译导出为 JSON 格式。                                                             |
 |                    | `apply_json_to_umg`              |   ✅   | 将 JSON 布局定义应用到 UMG 资产中。                                                             |

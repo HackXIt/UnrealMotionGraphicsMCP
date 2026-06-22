@@ -4,6 +4,7 @@ Build/
 Intermediate/
 Saved/
 DerivedDataCache/
+out/
 
 # Visual Studio files
 .vs/

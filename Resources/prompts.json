@@ -87,7 +87,19 @@
         },
         {
             "name": "reparent_widget",
-            "description": "Moves a widget to a new parent.",
+            "description": "Moves a widget to a new parent. Legacy alias for move_widget.",
+            "enabled": true,
+            "category": "UMG"
+        },
+        {
+            "name": "move_widget",
+            "description": "Moves a widget under an existing parent container. Parameters: widget_name, target.",
+            "enabled": true,
+            "category": "UMG"
+        },
+        {
+            "name": "wrap_widget",
+            "description": "Wraps/replaces a widget with a new parent widget specification. Parameters: widget_name, new_parent_widget.",
             "enabled": true,
             "category": "UMG"
         },

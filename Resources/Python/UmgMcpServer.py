@@ -546,7 +546,7 @@ async def delete_widget(widget_name: str) -> Dict[str, Any]:
     umg_set_client = UMGSet.UMGSet(conn)
     return await umg_set_client.delete_widget(widget_name)
 
-@register_tool("reparent_widget", "Moves a widget to a new parent.")
+@register_tool("reparent_widget", "Moves a widget to a new parent. Legacy alias for move_widget.")
 async def reparent_widget(widget_name: str, new_parent_name: str) -> Dict[str, Any]:
     """
     (Description loaded from prompts.json)
@@ -554,6 +554,20 @@ async def reparent_widget(widget_name: str, new_parent_name: str) -> Dict[str, A
     conn = get_unreal_connection()
     umg_set_client = UMGSet.UMGSet(conn)
     return await umg_set_client.reparent_widget(widget_name, new_parent_name)
+
+@register_tool("move_widget", "Moves a widget to an existing parent container.")
+async def move_widget(widget_name: str, target: str) -> Dict[str, Any]:
+    """Moves a widget under an existing parent container."""
+    conn = get_unreal_connection()
+    umg_set_client = UMGSet.UMGSet(conn)
+    return await umg_set_client.move_widget(widget_name, target)
+
+@register_tool("wrap_widget", "Wraps/replaces a widget with a new parent widget specification.")
+async def wrap_widget(widget_name: str, new_parent_widget: Dict[str, Any]) -> Dict[str, Any]:
+    """Creates a new parent/container from JSON and replaces/wraps the target widget."""
+    conn = get_unreal_connection()
+    umg_set_client = UMGSet.UMGSet(conn)
+    return await umg_set_client.wrap_widget(widget_name, new_parent_widget)
 
 @register_tool("save_asset", "Saves the UMG asset.")
 async def save_asset() -> Dict[str, Any]:

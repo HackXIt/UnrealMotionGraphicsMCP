@@ -27,8 +27,17 @@ class UMGSet:
         return self.client.send_command("delete_widget", params)
 
     def reparent_widget(self, widget_name: str, new_parent_name: str) -> Dict[str, Any]:
+        """Moves a widget to be a child of a different parent (legacy API)."""
+        return self.move_widget(widget_name, new_parent_name)
+
+    def move_widget(self, widget_name: str, target: str) -> Dict[str, Any]:
         """Moves a widget to be a child of a different parent."""
-        params = {"widget_name": widget_name, "new_parent_name": new_parent_name}
+        params = {"widget_name": widget_name, "target": target}
+        return self.client.send_command("move_widget", params)
+
+    def wrap_widget(self, widget_name: str, new_parent_widget: Dict[str, Any]) -> Dict[str, Any]:
+        """Wraps/replaces a widget with a new parent widget specification."""
+        params = {"widget_name": widget_name, "new_parent_widget": new_parent_widget}
         return self.client.send_command("reparent_widget", params)
 
     def save_asset(self) -> Dict[str, Any]:

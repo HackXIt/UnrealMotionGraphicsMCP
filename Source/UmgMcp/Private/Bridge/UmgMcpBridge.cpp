@@ -428,6 +428,7 @@ FString UUmgMcpBridge::InternalExecuteCommand(const FString& CommandType, const 
                  CommandType == TEXT("set_widget_properties") ||
                  CommandType == TEXT("delete_widget") ||
                  CommandType == TEXT("reparent_widget") ||
+                 CommandType == TEXT("move_widget") ||
                  CommandType == TEXT("save_asset") ||
                  CommandType == TEXT("get_widget_schema"))
         {
